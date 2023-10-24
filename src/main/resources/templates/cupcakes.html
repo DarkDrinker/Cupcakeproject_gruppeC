@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cupcake Shop</title>
+</head>
+<body>
+<h1>Welcome to Cupcake Shop</h1>
+<h2>Choose Your Cupcake</h2>
+<form id="cupcake-form">
+  <label for="bottom">Choose a Bottom:</label>
+  <select id="bottom" name="bottom">
+    <option value="2.50">Vanilla ($2.50)</option>
+    <option value="2.50">Chocolate ($2.50)</option>
+    <option value="2.75">Red Velvet ($2.75)</option>
+    <option value="3.00">Carrot ($3.00)</option>
+  </select>
+
+  <label for="topping">Choose a Topping:</label>
+  <select id="topping" name="topping">
+    <option value="0.50">Sprinkles ($0.50)</option>
+    <option value="0.75">Chocolate Chips ($0.75)</option>
+    <option value="0.75">Strawberries ($0.75)</option>
+    <option value="1.00">Caramel ($1.00)</option>
+    <option value="1.00">Nuts ($1.00)</option>
+    <option value="0.50">Whipped Cream ($0.50)</option>
+  </select>
+</form>
+
+<h3>Total Price: $<span id="total-price">0.00</span></h3>
+
+<script>
+  const cupcakeForm = document.getElementById('cupcake-form');
+  const totalPrice = document.getElementById('total-price');
+
+  const calculateTotalPrice = () => {
+    const selectedBottom = parseFloat(cupcakeForm.bottom.value);
+    const selectedTopping = parseFloat(cupcakeForm.topping.value);
+    const total = selectedBottom + selectedTopping;
+    totalPrice.textContent = total.toFixed(2);
+  };
+
+  cupcakeForm.addEventListener('change', calculateTotalPrice);
+</script>
+</body>
+</html>

@@ -7,16 +7,11 @@
 <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
-<style>
-    .banner {
-        background-image: url("../public/images/cupcakes1600x900.png");
-        width: 100%;
-        height: 300px;
-        text-align: center;
-    }
-</style>
 
-<div class = banner></div>
+<header th:fragment="header" style="width:100%;border-bottom:1px solid black;">
+    <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="100%"/>
+</header>
+
 <form method="post">
     <input type="text" name="username" placeholder="username"/>
     <input type="password" name="password" placeholder="password"/>
