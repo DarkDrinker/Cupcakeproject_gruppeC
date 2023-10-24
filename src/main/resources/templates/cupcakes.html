@@ -9,37 +9,69 @@
 <form id="cupcake-form">
   <label for="bottom">Choose a Bottom:</label>
   <select id="bottom" name="bottom">
-    <option value="2.50">Vanilla ($2.50)</option>
-    <option value="2.50">Chocolate ($2.50)</option>
-    <option value="2.75">Red Velvet ($2.75)</option>
-    <option value="3.00">Carrot ($3.00)</option>
+    <option value="2.50">Vanilla (2.50 DKK)</option>
+    <option value="2.50">Chocolate (2.50 DKK)</option>
+    <option value="2.75">Red Velvet (2.75 DKK)</option>
+    <option value="3.00">Carrot (3.00 DKK)</option>
   </select>
 
   <label for="topping">Choose a Topping:</label>
   <select id="topping" name="topping">
-    <option value="0.50">Sprinkles ($0.50)</option>
-    <option value="0.75">Chocolate Chips ($0.75)</option>
-    <option value="0.75">Strawberries ($0.75)</option>
-    <option value="1.00">Caramel ($1.00)</option>
-    <option value="1.00">Nuts ($1.00)</option>
-    <option value="0.50">Whipped Cream ($0.50)</option>
+    <option value="0.50">Sprinkles (0.50 DKK)</option>
+    <option value="0.75">Chocolate Chips (0.75 DKK)</option>
+    <option value="0.75">Strawberries (0.75 DKK)</option>
+    <option value="1.00">Caramel (1.00 DKK)</option>
+    <option value="1.00">Nuts (1.00 DKK)</option>
+    <option value="0.50">Whipped Cream (0.50 DKK)</option>
   </select>
+
+  <label for="amount">Choose the Amount:</label>
+  <input type="number" id="amount" name="amount" value="1" min="1" max="10">
+  <button type="button" id="add-to-cart">Add to Cart</button>
 </form>
 
-<h3>Total Price: $<span id="total-price">0.00</span></h3>
+<h3>Total Price: <span id="total-price">0.00 DKK</span></h3>
+
+<div id="cart">
+  <h2>Your Cart</h2>
+  <ul id="cart-items">
+  </ul>
+</div>
 
 <script>
   const cupcakeForm = document.getElementById('cupcake-form');
   const totalPrice = document.getElementById('total-price');
+  const addToCartButton = document.getElementById('add-to-cart');
+  const cartItemsList = document.getElementById('cart-items');
 
   const calculateTotalPrice = () => {
     const selectedBottom = parseFloat(cupcakeForm.bottom.value);
     const selectedTopping = parseFloat(cupcakeForm.topping.value);
-    const total = selectedBottom + selectedTopping;
-    totalPrice.textContent = total.toFixed(2);
+    const amount = parseInt(cupcakeForm.amount.value);
+    const total = (selectedBottom + selectedTopping) * amount;
+    totalPrice.textContent = total.toFixed(2) + ' DKK';
+  };
+
+  const addToCart = () => {
+    const selectedBottomName = cupcakeForm.bottom.options[cupcakeForm.bottom.selectedIndex].text;
+    const selectedToppingName = cupcakeForm.topping.options[cupcakeForm.topping.selectedIndex].text;
+    const amount = parseInt(cupcakeForm.amount.value);
+
+    const itemText = `${amount} x ${selectedBottomName} with ${selectedToppingName}`;
+    const itemPrice = parseFloat(totalPrice.textContent);
+
+    const listItem = document.createElement('li');
+    listItem.textContent = `${itemText} - ${itemPrice} DKK`;
+
+    cartItemsList.appendChild(listItem);
+
+    // Reset form and total price
+    cupcakeForm.reset();
+    totalPrice.textContent = '0.00 DKK';
   };
 
   cupcakeForm.addEventListener('change', calculateTotalPrice);
+  addToCartButton.addEventListener('click', addToCart);
 </script>
 </body>
 </html>
