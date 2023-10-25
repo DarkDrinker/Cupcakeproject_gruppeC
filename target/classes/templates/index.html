@@ -6,21 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
-
 <body>
 
-<h1>Four things plus</h1>
-
-<p>Velkommen til, du er nu logget ind</p>
+<header th:fragment="header" style="width:100%;border-bottom:1px solid black;">
+    <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="100%"/>
+</header>
 
 <form method="post">
-
     <input type="text" name="username" placeholder="username"/>
-    <input type="password" name="password1" placeholder="password"/>
-    <input type="password" name="password2" placeholder="gentag password"/>
-    <button type="submit" formaction="/createuser">Opret bruger</button>
+    <input type="password" name="password" placeholder="password"/>
+    <button type="submit" formaction="/login" >log pā</button>
 
-    <p class="errormessage" th:text="${#ctx.message}"></p>
+    <p th:text="${#ctx.message}"> </p>
 </form>
 
 </body>
