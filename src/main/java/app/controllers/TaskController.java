@@ -27,7 +27,6 @@ public class TaskController
             ctx.attribute("message", e.getMessage());
             ctx.render("index.html");
         }
-
     }
 
     public static void done(Context ctx, boolean done, ConnectionPool connectionPool)
