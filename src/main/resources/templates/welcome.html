@@ -13,5 +13,15 @@
 
 <p>Velkommen til, du er nu logget ind</p>
 
+<form method="post">
+
+    <input type="text" name="username" placeholder="username"/>
+    <input type="password" name="password1" placeholder="password"/>
+    <input type="password" name="password2" placeholder="gentag password"/>
+    <button type="submit" formaction="/createuser">Opret bruger</button>
+
+    <p class="errormessage" th:text="${#ctx.message}"></p>
+</form>
+
 </body>
 </html>
