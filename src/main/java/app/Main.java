@@ -22,7 +22,8 @@ public class Main {
 
         // Routing
 
-        app.get("/", ctx -> ctx.render("index.html"));
-        app.post("/login", ctx -> UserController.login(ctx ,connectionPool) );
+        app.get("/", ctx -> ctx.render("cupcakes.html"));
+        //app.get("/login", ctx -> ctx.render("create_user.html"));
+        app.post("refreshlogin", ctx -> UserController.login(ctx ,connectionPool) );
     }
 }
