@@ -6,13 +6,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-</head>
 
+
+
+</head>
+<header th:fragment="banner">
+  <div class="image-cutout">
+    <img src="../public/images/cupcakes1600x900.png" th:src="@{/images/cupcakes1600x900.png}" alt="banner of cupcakes">
+  </div>
+</header>
 <body>
 
-<header th:fragment="banner">
-  <img src="../public/images/cupcakes1600x900.png" th:src="@{/images/cupcakes1600x900.png}" style="width:100%;height:200px;" alt="banner of cupcakes">
-  </header>
 
 <footer th:fragment="footer" style="width:100%;border-top:1px solid black;">
   Dette er så en footer.

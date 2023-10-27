@@ -27,7 +27,7 @@ public class Main {
         app.get("/", ctx -> ctx.render("cupcakes.html"));
         app.get("/cupcakes.html", ctx -> ctx.render("cupcakes.html"));
         app.post("/login", ctx -> UserController.login(ctx ,connectionPool) );
-
+        app.get("/cart", ctx -> ctx.render("cart.html"));
 
         app.get("/createuser", ctx -> ctx.render("createuser.html"));
         app.post("/createuser",ctx -> UserController.createuser(ctx, connectionPool ));

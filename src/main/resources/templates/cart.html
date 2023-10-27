@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+</head>
+<body>
+<h1>Your Cart</h1>
+<ul id="cart-items">
+</ul>
+
+<script>
+  const cartItemsList = document.getElementById('cart-items');
+
+  // Retrieve cartData from localStorage
+  const cartData = JSON.parse(localStorage.getItem('cartData'));
+  // Display cart items
+  if (cartData) {
+    cartData.forEach(orderLine => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${orderLine.amount} x ${orderLine.bottom} with ${orderLine.topping} - ${orderLine.price.toFixed(2)} DKK`;
+      cartItemsList.appendChild(listItem);
+    });
+  }
+</script>
+</body>
+</html>
