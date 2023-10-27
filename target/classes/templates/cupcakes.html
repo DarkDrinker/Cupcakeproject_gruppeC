@@ -8,7 +8,7 @@
     width: 100%;
     height: 200px;
   }
-  loginbutton{
+  .loginbutton{
     background-color: purple;
     color: white;
     padding: 14px 20px;
@@ -64,15 +64,6 @@
     position: relative;
   }
 
-  .container {
-    padding: 16px;
-  }
-
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
-
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
@@ -99,8 +90,8 @@
   /* The Close Button (x) */
   .close {
     position: absolute;
-    right: 25px;
-    top: 0;
+    right: 15px;
+    top: -25px;
     color: #000;
     font-size: 35px;
     font-weight: bold;
@@ -156,29 +147,22 @@
     }
   </script>
 
-  <script>
-    function validateForm() {
-      var x = document.forms["myForm"]["fname"].value;
-      if (x == "") {
-        alert("Name must be filled out");
-        return false;
-      }
-    }
-  </script>
+  <a href="cupcakes.html"> <div th:replace="~{fragments :: banner}"></div> </a>
 
-  <a href="cupcakes.html"> <div class = banner> </div> </a>
   <div class="topnav">
     <a href="cupcakes.html">Home</a>
+    <a th:if="${#ctx.session.currentuser !=null || #ctx.session.isAdmin == true }" href="/orders">orders</a>
+    <a class="split" href="/login" th:if="${#ctx.session.currentuser !=null }"  >login</a>
+  </div>
 
-    <a href="##orders">orders</a>
-    <a class="split" onclick="document.getElementById('id01').style.display='block'">Login</a>
+    <!-- <a class="split" onclick="document.getElementById('id01').style.display='block'">Login</a>
   </div>
   <div id="id01" class="modal">
 
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate" action="/login" method="post">
       <div class="imgcontainer">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+
       </div>
 
       <div class="container">
@@ -188,16 +172,15 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
 
-        <button type="submit">Login</button>
-
+        <button type="submit" >Login</button>
       </div>
 
       <div class="container" style="background-color:#f1f1f1">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-
       </div>
+    </form>
   </div>
-
+  -->
 
   <title>Cupcake Shop</title>
 </head>
