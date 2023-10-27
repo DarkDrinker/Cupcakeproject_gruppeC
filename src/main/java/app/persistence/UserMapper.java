@@ -21,7 +21,9 @@ public class UserMapper {
                ResultSet rs = ps.executeQuery();
                if(rs.next()){
                    int id = rs.getInt("id");
-                   return new User(id,name, password);
+                   boolean isAdmin = rs.getBoolean("admin");
+                   int balance = rs.getInt("balance");
+                   return new User(id,name, password,isAdmin,balance);
                } else {
                 throw new DatabaseException("Login er desværre forkert");
                }

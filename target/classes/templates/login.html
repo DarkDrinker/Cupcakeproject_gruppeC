@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CupCakes INC</title>
+  <style>
+    .banner {
+      background-image: url("../public/images/cupcakes1600x900.png");
+      width: 100%;
+      height: 200px;
+    }
+    .loginbutton{
+      background-color: purple;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      top: 30%;
+      left: 80%;
+      position: absolute;
+      z-index: auto;
+    }
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Create a right-aligned (split) link inside the navigation bar */
+    .topnav a.split {
+      float: right;
+      background-color: #04AA6D;
+      color: white;
+    }
+    .banner {
+      background-image: url("../public/images/cupcakes1600x900.png");
+      width: 100%;
+      height: 300px;
+    }
+
+
+  </style>
+
+  <a href="cupcakes.html"> <div class = banner> </div> </a>
+
+  <div class="topnav">
+    <a href="cupcakes.html">Home</a>
+  </div>
+  <title>Cupcake Shop</title>
+</head>
+<body>
+<form method="post">
+  <input type="text" name="username" placeholder="username"/>
+  <input type="password" name="password" placeholder="password"/>
+  <button type="submit"  formaction="/login" >login</button>
+
+  <p th:text="${#ctx.message}"> </p>
+</form>
+</body>
+</html>

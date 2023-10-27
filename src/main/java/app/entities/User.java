@@ -4,11 +4,15 @@ public class User {
     private int id;
     private String name;
     private String password;
+    private boolean admin;
+    private int balance;
 
-    public User(int id, String name, String password) {
+    public User(int id, String name, String password, boolean isAdmin, int balance) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.admin = isAdmin;
+        this.balance = balance;
     }
 
     public int getId() {
