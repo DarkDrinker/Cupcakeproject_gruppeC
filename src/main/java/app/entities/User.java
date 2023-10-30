@@ -15,6 +15,12 @@ public class User {
         this.balance = balance;
     }
 
+    public User(int id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }

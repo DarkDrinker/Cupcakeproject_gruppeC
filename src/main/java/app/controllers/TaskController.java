@@ -4,13 +4,14 @@ import app.entities.Task;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderMapper;
 import app.persistence.TaskMapper;
 import io.javalin.http.Context;
 
 import java.util.List;
 
 public class TaskController
-{
+{ /*
     public static void addtask(Context ctx, ConnectionPool connectionPool)
     {
         User user = ctx.sessionAttribute("currentUser");
@@ -92,7 +93,7 @@ public class TaskController
         String taskName = ctx.formParam("task_name");
         try
         {
-            TaskMapper.update(taskId, taskName, connectionPool);
+            OrderMapper.update(orderId, status, connectionPool);
             User user = ctx.sessionAttribute("currentUser");
             List<Task> taskList = TaskMapper.getAllTasksPerUser(user.getId(), connectionPool);
             ctx.attribute("taskList", taskList);
@@ -107,5 +108,5 @@ public class TaskController
 
 
 
-    }
+    }*/
 }
