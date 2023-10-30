@@ -1,8 +1,6 @@
 package app.persistence;
-
 import app.entities.User;
 import app.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,4 +60,26 @@ public class UserMapper {
             throw new DatabaseException(msg);
         }
     }
+
+    public int updateBalance(int userId, int balance, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE users SET balance = ? WHERE user_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()){
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, userId);
+                ps.setInt(2, balance);
+
+                int rowAffected = ps.executeUpdate();
+                return rowAffected;
+
+            } catch (SQLException ex) {
+                throw new DatabaseException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException("Forbindelse kunne ikke oprettes");
+        }
+    }
+
+
 }

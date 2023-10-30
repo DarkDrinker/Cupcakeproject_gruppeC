@@ -7,6 +7,7 @@ public class User {
     private boolean admin;
     private int balance;
 
+
     public User(int id, String name, String password, boolean isAdmin, int balance) {
         this.id = id;
         this.name = name;
@@ -27,12 +28,26 @@ public class User {
         return password;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", admin=" + admin +
+                ", balance=" + balance +
                 '}';
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskMapper
-{
+{/*
 
     public static List<Task> getAllTasksPerUser(int user_id, ConnectionPool connectionPool) throws DatabaseException
     {
@@ -40,11 +40,11 @@ public class TaskMapper
         return taskList;
     }
 
-    public static Task addTask(User user, String taskName, ConnectionPool connectionPool) throws DatabaseException
+    public static Task addOrder(User user, String date,String status,int userId ConnectionPool connectionPool) throws DatabaseException
     {
         Task newTask = null;
 
-        String sql = "insert into task (name, done, user_id) values (?,?,?)";
+        String sql = "insert into Order (id, date, status, user_id) values (?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
@@ -166,5 +166,5 @@ public class TaskMapper
         {
             throw new DatabaseException("Fejl i opdatering af en task");
         }
-    }
+    }*/
 }
