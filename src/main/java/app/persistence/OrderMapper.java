@@ -1,8 +1,6 @@
 package app.persistence;
 
 import app.entities.Order;
-import app.entities.Task;
-import app.entities.User;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -28,10 +26,12 @@ public class OrderMapper {
                 while (rs.next())
                 {
                     int id = rs.getInt("id");
+                    System.out.println(rs.getInt("id"));
                     String date = rs.getString("date");
+                    System.out.println(rs.getString("date"));
                     String status = rs.getString("status");
-                    int userId = rs.getInt("userId");
-                    orderList.add(new Order(id, date, status, userId));
+                    System.out.println(rs.getString("status"));
+                    orderList.add(new Order(id, date, status, user_id));
                 }
             }
 

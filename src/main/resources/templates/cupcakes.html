@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="">
 <div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
-<head>
+<thhead>
   <style>
 
   </style>
-</head>
+</thhead>
 <body>
 <a href="cupcakes.html">
   <div th:replace="~{fragments :: banner}"></div>
@@ -17,7 +17,7 @@
   <a th:if="${#ctx.session.currentUser}" href="/Orders">Orders</a>
   <div th:switch="${#ctx.session.currentUser != null}" >
     <a th:case="false" class="split" href="/login">Login </a>
-    <a th:case="true" class="split" > "${#ctx.session.currentUser.name}" </a>
+    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}"></a>
   </div>
 
 </div>

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cart</title>
+  <div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
 </head>
 <body>
+<a href="cupcakes.html">
+  <div th:replace="~{fragments :: banner}"></div>
+</a>
+<div class="topnav">
+  <a href="/cupcakes">Home</a>
+  <a href="/cart" id="view-cart">Cart</a>
+  <a th:if="${#ctx.session.currentUser}" th:href="@{/orders/__${#ctx.session.currentUser.id}__}">Orders</a>
+  <div th:switch="${#ctx.session.currentUser != null}" >
+    <a th:case="false" class="split" href="/login">Login </a>
+    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}"></a>
+  </div>
+</div>
+
 <h1>Your Cart</h1>
+
+<p>Current balance:</p>
+<div th:switch="${#ctx.session.currentUser != null}" >
+  <p th:case="false">Login to view your current balance</p>
+  <p th:case="true" th:text="${#ctx.session.currentUser.balance}"></p>
+</div>
+
 <ul id="cart-items">
 </ul>
 
@@ -13,16 +33,27 @@
 
   // Retrieve cartData from localStorage
   const cartData = JSON.parse(localStorage.getItem('cartData'));
-  // Display cart items
+  var total;
   if (cartData) {
     cartData.forEach(orderLine => {
       const listItem = document.createElement('li');
-      listItem.textContent = `${orderLine.amount} x ${orderLine.bottom} with ${orderLine.topping} - ${orderLine.price.toFixed(2)} DKK`;
+      listItem.textContent = `${orderLine.amount} x ${orderLine.bottom} bottom with ${orderLine.topping} topping   - ${orderLine.price.toFixed(2)} DKK`;
       cartItemsList.appendChild(listItem);
     });
   }
+  // JavaScript code to intercept link clicks
+  document.addEventListener("click", function(event) {
+    if (event.target.tagName === "A") {
+      // Prevent the default link behavior
+      event.preventDefault();
 
+      // Get the href attribute of the link
+      var href = event.target.getAttribute("href");
 
+      // Perform navigation using JavaScript
+      window.location.href = href;
+    }
+  });
 </script>
 </body>
 </html>
