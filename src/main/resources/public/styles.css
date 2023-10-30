@@ -144,8 +144,11 @@ button:hover {
     width: auto; /* Set the width of the cutout area */
     height: 200px; /* Set the height of the cutout area */
     overflow: hidden; /* Hide content outside the container */
+    background-color: #04AA6D;
+    position: center;
 }
 
 .image-cutout img {
     clip: rect(0px, auto, 200px, 0px); /* Define the cutout area (top, right, bottom, left) */
+    position: center;
 }

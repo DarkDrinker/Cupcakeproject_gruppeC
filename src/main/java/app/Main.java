@@ -26,6 +26,7 @@ public class Main {
 
         app.get("/", ctx -> ctx.render("cupcakes.html"));
         app.get("/cupcakes.html", ctx -> ctx.render("cupcakes.html"));
+        app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> UserController.login(ctx ,connectionPool) );
         app.get("/cart", ctx -> ctx.render("cart.html"));
 

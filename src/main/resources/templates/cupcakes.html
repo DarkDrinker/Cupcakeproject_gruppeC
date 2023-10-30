@@ -1,116 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
 <head>
-    <!--
-    <script>
-    // Get the modal
-    var modal = document.getElementById('id01');
+  <style>
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-    <a class="split" onclick="document.getElementById('id01').style.display='block'">Login</a>
-  </div>
-  <div id="id01" class="modal">
-
-    <form class="modal-content animate" action="/login" method="post">
-      <div class="imgcontainer">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-      </div>
-
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit" >Login</button>
-      </div>
-
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      </div>
-    </form>
-  </div>
-  -->
+  </style>
 </head>
 <body>
 <a href="cupcakes.html">
   <div th:replace="~{fragments :: banner}"></div>
 </a>
 
-<div class="topnav">
+<div class="topnav"  >
   <a href="/cupcakes">Home</a>
   <a href="/cart" id="view-cart">Cart</a>
-  <a th:if="${#ctx.session.currentuser !=null || #ctx.session.isAdmin == true }" href="/orders">orders</a>
-  <a class="split" href="/login" th:if="${#ctx.session.currentuser !=null }"  >login</a>
+  <a th:if="${#ctx.session.currentUser}" href="/Orders">Orders</a>
+  <div th:switch="${#ctx.session.currentUser != null}" >
+    <a th:case="false" class="split" href="/login">Login </a>
+    <a th:case="true" class="split" > "${#ctx.session.currentUser.name}" </a>
+  </div>
+
 </div>
-
-
-<!-- <h1>Welcome our Cupcake Shop</h1>
- <a href="login.html"> <button type="button" class="loginbutton" formaction="/login">login</button></a>
-
-
-<button onclick="document.getElementById('id01').style.display='block'" class="loginbutton" style="width:auto;">Login</button>
-<div id="id01" class="modal">
-
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <button type="submit">Login</button>
-
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-
-    </div>
-</div>
-<button type="button" class="cartbutton">cart</button>-->
-
-
-
-
-
-
-
-
-
+<p th:text="${name}">lolololol</p>
 <h2>Choose Your Cupcake</h2>
 <form id="cupcake-form">
   <label for="bottom">Choose a Bottom:</label>
   <select id="bottom" name="bottom">
-    <option value="2.50">Vanilla (2.50 DKK)</option>
-    <option value="2.50">Chocolate (2.50 DKK)</option>
-    <option value="2.75">Red Velvet (2.75 DKK)</option>
-    <option value="3.00">Carrot (3.00 DKK)</option>
+    <option value="7.00">Almond (7.00 DKK)</option>
+    <option value="6.00">Pistachio (6.00 DKK)</option>
+    <option value="5.00">Nutmeg (5.00 DKK)</option>
+    <option value="5.00">Vanilla (5.00 DKK)</option>
+    <option value="5.00">Chocolate (5.00 DKK)</option>
   </select>
 
   <label for="topping">Choose a Topping:</label>
   <select id="topping" name="topping">
-    <option value="0.50">Sprinkles (0.50 DKK)</option>
-    <option value="0.75">Chocolate Chips (0.75 DKK)</option>
-    <option value="0.75">Strawberries (0.75 DKK)</option>
-    <option value="1.00">Caramel (1.00 DKK)</option>
-    <option value="1.00">Nuts (1.00 DKK)</option>
-    <option value="0.50">Whipped Cream (0.50 DKK)</option>
+    <option value="5.00">Chocolate (5.00DKK)</option>
+    <option value="5.00">Blueberry (5.00 DKK)</option>
+    <option value="5.00">Raspberry (5.00 DKK)</option>
+    <option value="6.00">Crispy (6.00 DKK)</option>
+    <option value="6.00">Strawberry (6.00 DKK)</option>
+    <option value="7.00">Rum/Raisins (7.00 DKK)</option>
+    <option value="8.00">Orange (8.00 DKK)</option>
+    <option value="8.00">Lemon (8.00 DKK)</option>
+    <option value="9.00">Blue Cheese (9.00 DKK)</option>
   </select>
 
   <label for="amount">Choose the Amount:</label>
@@ -124,8 +57,6 @@
   <ul id="cart-items">
   </ul>
 </div>
-
-<!--<button id="view-cart">View Cart</button>-->
 
 <script>
   const cupcakeForm = document.getElementById('cupcake-form');
@@ -176,6 +107,7 @@
     // Store cartData in localStorage to pass it to the cart.html page
     localStorage.setItem('cartData', JSON.stringify(cartData));
     window.location.href = 'cart.html';
+
   });
 
   cupcakeForm.addEventListener('change', calculateTotalPrice);

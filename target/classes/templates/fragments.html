@@ -5,14 +5,14 @@
   <title th:text="${title}"></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+  <link href="../public/styles.css" th:href="@{/styles.css}" rel="stylesheet"/>
 
 
 
 </head>
 <header th:fragment="banner">
-  <div class="image-cutout">
-    <img src="../public/images/cupcakes1600x900.png" th:src="@{/images/cupcakes1600x900.png}" alt="banner of cupcakes">
+  <div class="image-cutout" style="background-color: #04AA6D">
+    <img src="../public/images/cupcakelogo.png" th:src="@{/images/cupcakelogo.png}" alt="banner of cupcakes">
   </div>
 </header>
 <body>
