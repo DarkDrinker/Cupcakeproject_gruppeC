@@ -1,8 +1,11 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.CartController;
+import app.controllers.OrderController;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 public class Main {
@@ -24,12 +27,16 @@ public class Main {
         // Routing
 
         app.get("/", ctx -> ctx.render("cupcakes.html"));
-        app.get("/cupcakes.html", ctx -> ctx.render("cupcakes.html"));
+        app.get("/cupcakes", ctx -> ctx.render("cupcakes.html"));
+
         app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> UserController.login(ctx ,connectionPool) );
-        app.get("/cart", ctx -> ctx.render("cart.html"));
-
         app.get("/createuser", ctx -> ctx.render("createuser.html"));
         app.post("/createuser",ctx -> UserController.createuser(ctx, connectionPool ));
+
+        app.get("/cart", ctx -> ctx.render("cart.html"));
+        app.get("/orders/{id}", ctx -> OrderController.getorders(ctx, connectionPool));
+        app.get("/updatedhomepage", ctx -> ctx.render("cupcakes.html"));
+        app.post("/addToCart", ctx-> CartController.addToCart(ctx, connectionPool));
     }
 }

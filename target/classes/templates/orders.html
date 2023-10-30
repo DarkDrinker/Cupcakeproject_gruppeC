@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Orders</title>
+    <div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
 </head>
 <body>
+<a href="/cupcakes">
+    <div th:replace="~{fragments :: banner}"></div>
+</a>
+<div class="topnav">
+    <a href="/cupcakes">Home</a>
+    <a href="/cart" id="view-cart">Cart</a>
+    <a th:if="${#ctx.session.currentUser}" th:href="@{/orders/__${#ctx.session.currentUser.id}__}">Orders</a>
+    <div th:switch="${#ctx.session.currentUser != null}" >
+        <a th:case="false" class="split" href="/login">Login </a>
+        <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}"></a>
+    </div>
+</div>
+<h1>Your Orders</h1>
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>date of purchase</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="order : ${#ctx.session.ListsOfOrders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.date}"></td>
+        <td th:text="${order.status}"></td>
+    </tr>
+</table>
 
 
 

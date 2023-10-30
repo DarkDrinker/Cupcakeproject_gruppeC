@@ -5,13 +5,13 @@ public class Order {
     private int id;
     private String date;
     private String status;
-    private int userId;
+    private int user_id;
 
     public Order(int id, String date, String status, int userId) {
         this.id = id;
         this.date = date;
         this.status = status;
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public int getId() {
@@ -27,6 +27,6 @@ public class Order {
     }
 
     public int getUserId() {
-        return userId;
+        return user_id;
     }
 }
