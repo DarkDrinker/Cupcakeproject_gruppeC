@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserController
 {
+    User user;
     public static void login(Context ctx, ConnectionPool connectionPool)
     {
         String name = ctx.formParam("username");
@@ -39,7 +40,7 @@ public class UserController
             {
                 UserMapper.createuser(name, password1, connectionPool);
                 ctx.attribute("message", "Du er nu oprette. Log på for at komme i gang.");
-                ctx.render("index.html");
+                ctx.render("cupcakes.html");
 
             }
             catch (DatabaseException e)

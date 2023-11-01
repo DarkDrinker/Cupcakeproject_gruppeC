@@ -13,7 +13,7 @@ import java.util.List;
 public class CartController {
     public static void addToCart(Context ctx, ConnectionPool connectionPool)
     {
-        User user = ctx.sessionAttribute("currentUser");
+      /*  User user = ctx.sessionAttribute("currentUser");
         String taskName = ctx.formParam("addOrder");
         try
         {
@@ -27,6 +27,6 @@ public class CartController {
             ctx.attribute("message", e.getMessage());
             ctx.render("index.html");
         }
-
+*/
     }
 }

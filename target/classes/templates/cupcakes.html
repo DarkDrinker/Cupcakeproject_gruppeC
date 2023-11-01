@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
-</head>
+<html lang="">
+<div th:replace="~{fragments :: head('My Cupcake Shop')}"></div>
+<thhead>
+  <style>
+
+  </style>
+</thhead>
 <body>
 <a href="cupcakes.html">
   <div th:replace="~{fragments :: banner}"></div>
@@ -11,15 +14,15 @@
 <div class="topnav"  >
   <a href="/cupcakes">Home</a>
   <a href="/cart" id="view-cart">Cart</a>
-  <a th:if="${#ctx.session.currentUser}" th:href="@{/orders/__${#ctx.session.currentUser.id}__}">Orders</a>
+    <a th:if="${#ctx.session.currentUser}" th:href="@{/orders/__${#ctx.session.currentUser.id}__}">Orders</a>
   <div th:switch="${#ctx.session.currentUser != null}" >
     <a th:case="false" class="split" href="/login">Login </a>
-    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}"></a>
+    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}" href="/logout"></a>
   </div>
 </div>
-<p th:text="${#message}"></p>
-<h2>Choose Your Cupcake</h2>
 
+<p th:text="${name}">lolololol</p>
+<h2>Choose Your Cupcake</h2>
 <form id="cupcake-form">
   <label for="bottom">Choose a Bottom:</label>
   <select id="bottom" name="bottom">
@@ -76,7 +79,6 @@
     const amount = parseInt(cupcakeForm.amount.value);
     const itemPrice = parseFloat(totalPrice.textContent);
 
-    // Check if the selected cupcake is already in the cart
     const existingItem = cartData.find(item =>
             item.bottom === selectedBottomName && item.topping === selectedToppingName
     );
@@ -109,9 +111,6 @@
   });
 
   cupcakeForm.addEventListener('change', calculateTotalPrice);
-
-
-
 </script>
 </body>
 </html>
