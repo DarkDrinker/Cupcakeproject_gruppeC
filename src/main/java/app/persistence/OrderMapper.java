@@ -26,11 +26,8 @@ public class OrderMapper {
                 while (rs.next())
                 {
                     int id = rs.getInt("id");
-                    System.out.println(rs.getInt("id"));
                     String date = rs.getString("date");
-                    System.out.println(rs.getString("date"));
                     String status = rs.getString("status");
-                    System.out.println(rs.getString("status"));
                     orderList.add(new Order(id, date, status, user_id));
                 }
             }
@@ -38,7 +35,7 @@ public class OrderMapper {
         }
         catch (SQLException e)
         {
-            throw new DatabaseException("Fejl!!!!");
+            throw new DatabaseException("Fejl i Orders");
         }
         return orderList;
     }

@@ -46,28 +46,4 @@ public class OrderController {
             ctx.render("orders.html");
         }
     }
-
-    public static void update(Context ctx, ConnectionPool connectionPool)
-    {
-        int orderId = Integer.parseInt(ctx.formParam("order_id"));
-        String status = ctx.formParam("status");
-        try
-        {
-            OrderMapper.update(orderId, status, connectionPool);
-            User user = ctx.sessionAttribute("currentUser");
-            List<Order> orderList = OrderMapper.getAllOrdersPerUser(user.getId(), connectionPool);
-            ctx.attribute("orderList", orderList);
-            ctx.render("orders.html");
-        }
-        catch (DatabaseException e)
-        {
-            ctx.attribute("message", e.getMessage());
-            ctx.render("index.html");
-        }
-
-
-
-
-    }
-
 }

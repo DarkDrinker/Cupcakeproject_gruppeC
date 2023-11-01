@@ -10,6 +10,7 @@
 
 <div class="topnav">
   <a href="/cupcakes">Home</a>
+
 </div>
 
 <form method="post">
@@ -18,8 +19,11 @@
   <button type="submit"  formaction="/login" >login</button>
   <p th:text="${#ctx.message}"> </p>
 </form>
-<label>
-  <button type="button" href="/createuser" formaction="/createuser" >Create User instead?</button>
-</label>
+
+<form action="/createuser">
+  <button type="submit">Create User instead?</button>
+</form>
+
+
 </body>
 </html>

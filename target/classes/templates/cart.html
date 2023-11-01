@@ -13,7 +13,7 @@
   <a th:if="${#ctx.session.currentUser}" th:href="@{/orders/__${#ctx.session.currentUser.id}__}">Orders</a>
   <div th:switch="${#ctx.session.currentUser != null}" >
     <a th:case="false" class="split" href="/login">Login </a>
-    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}"></a>
+    <a th:case="true" class="split" th:text="${#ctx.session.currentUser.name}" href="/logout"></a>
   </div>
 </div>
 
