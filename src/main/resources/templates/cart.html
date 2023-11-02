@@ -31,9 +31,8 @@
 <script>
   const cartItemsList = document.getElementById('cart-items');
 
-  // Retrieve cartData from localStorage
+  // Retrieve cartData from localStorage and display it.
   const cartData = JSON.parse(localStorage.getItem('cartData'));
-  var total;
   if (cartData) {
     cartData.forEach(orderLine => {
       const listItem = document.createElement('li');
@@ -41,19 +40,6 @@
       cartItemsList.appendChild(listItem);
     });
   }
-  // JavaScript code to intercept link clicks
-  document.addEventListener("click", function(event) {
-    if (event.target.tagName === "A") {
-      // Prevent the default link behavior
-      event.preventDefault();
-
-      // Get the href attribute of the link
-      var href = event.target.getAttribute("href");
-
-      // Perform navigation using JavaScript
-      window.location.href = href;
-    }
-  });
 </script>
 </body>
 </html>

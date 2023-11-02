@@ -59,12 +59,15 @@
 </div>
 
 <script>
+  // Get object details by id.
   const cupcakeForm = document.getElementById('cupcake-form');
   const totalPrice = document.getElementById('total-price');
   const addToCartButton = document.getElementById('add-to-cart');
   const viewCartButton = document.getElementById('view-cart');
   let cartData = [];
 
+  // Parse the values of the form to a variable we can use. And add them together. toFixed() is a function to limit
+  // the amount of numbers after . .
   const calculateTotalPrice = () => {
     const selectedBottom = parseFloat(cupcakeForm.bottom.value);
     const selectedTopping = parseFloat(cupcakeForm.topping.value);
@@ -72,7 +75,9 @@
     const total = (selectedBottom + selectedTopping) * amount;
     totalPrice.textContent = total.toFixed(2) + ' DKK';
   };
-
+  // Pulls information of the given index of bottom, topping and amount to add it into our cart.
+  // Don't understand the difference between innerText and textContent. But this works.
+  // searches for the picked item and checks to see if already in cart.
   const addToCart = () => {
     const selectedBottomName = cupcakeForm.bottom.options[cupcakeForm.bottom.selectedIndex].text;
     const selectedToppingName = cupcakeForm.topping.options[cupcakeForm.topping.selectedIndex].text;
@@ -100,16 +105,17 @@
     cupcakeForm.reset();
     totalPrice.textContent = '0.00 DKK';
   };
-
+  // When button is pressed, do function. Couldn't make it work with html buttons.
   addToCartButton.addEventListener('click', addToCart);
 
   viewCartButton.addEventListener('click', () => {
-    // Store cartData in localStorage to pass it to the cart.html page
+    // Store our cartData array in localStorage to pass it to the cart.html page
+    // cant figure out how to make it stay between site changes.
+    // maybe sessionStorage? no time.
     localStorage.setItem('cartData', JSON.stringify(cartData));
     window.location.href = 'cart.html';
-
   });
-
+  //when any change happens in our 'cupcakeform' recalc the totalprice shown.
   cupcakeForm.addEventListener('change', calculateTotalPrice);
 </script>
 </body>
